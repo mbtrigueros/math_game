@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 // A very simplistic car driving on the x-z plane.
 
@@ -17,6 +18,7 @@ public class DriveAlt : MonoBehaviour
         direction = fuel.transform.position - this.transform.position;
         Coords dirNormal = CustomMath.GetNormal(new Coords(direction));
         direction = dirNormal.ToVector();
+        this.transform.up = CustomMath.LookAt2D(new Coords(this.transform.up), new Coords(this.transform.position), new Coords(fuel.transform.position)).ToVector();
     }
     void Update()
     {
